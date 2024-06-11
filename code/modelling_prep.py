@@ -249,7 +249,7 @@ def getPatientIdentifierLabel(dataframeToSearch:DataFrame):
 
     # regex to get patient identifier column name in the dataframes
     # catches case-insensitive variations of patient_id, patid, pat id, case_id, case id, caseid
-    regexSearchTerm = r"(?i)pat(ient)?(_| )?id|(?i)case(_| )?id"
+    regexSearchTerm = r"(?i)pat(ient)?(_| )?id|(?i)case(_| )?id|id"
 
     patIdentifier = dataframeToSearch.filter(regex=regexSearchTerm).columns.to_list()
 
@@ -286,7 +286,7 @@ def dropPyradiomicsDiagnostics(dfPyradiomicsFeatures:DataFrame):
         featsOnlyRadiomics = dfPyradiomicsFeatures.iloc[:, lastDiagnosticIdx+1:]
 
     else:
-        originalRadiomics = dfPyradiomicsFeatures.filter(regex=r'original_*')
+        originalRadiomics = dfPyradiomicsFeatures.filter(regex=r'^original_*')
         if not originalRadiomics.empty:
             # Get the first original feature column index - the features begin in this column
             firstOriginalIdx = dfPyradiomicsFeatures.columns.get_loc(originalRadiomics.columns[0])
@@ -309,7 +309,7 @@ def modelDataSetup(clinicalDataPath,
     ----------
     clinicalDataPath : str
         Path to the clinical data file, expect xlsx file
-    featuresDataPath : str
+    featureDataPath : str
         Path to the features data file, expect csv file
     clinicalPatID : str
         Name of the column in the clinical data that has patient identifiers. If not passed, will look for 
@@ -328,7 +328,7 @@ def modelDataSetup(clinicalDataPath,
     # Load in the clinical data into a DataFrame
     completeClinicalData = pd.read_excel(clinicalDataPath)
     # Load in the features data into a DataFrame
-    featureData = pd.read_csv(featuresDataPath)
+    featureData = pd.read_csv(featureDataPath)
 
     if clinicalPatID is None:
         clinicalPatID = getPatientIdentifierLabel(completeClinicalData)
