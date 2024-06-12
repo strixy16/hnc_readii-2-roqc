@@ -1,0 +1,5 @@
+signature:
+    'Energy': 1.74e-11
+    'Compactness1': -1.65e+01
+    'GrayLevelNonUniformity': 4.95e-05
+    'Wavelet-HLH_GrayLevelNonUniformity': 2.81e-06
