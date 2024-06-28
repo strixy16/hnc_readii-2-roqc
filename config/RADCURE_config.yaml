@@ -1,0 +1,24 @@
+# clinical data is expected to be an excel file
+clinical_data_path: "/Users/katyscott/Documents/HNC Project/data/RADCURE/clinical_data/readii-2-roqc-RADCURE-DA-CLINICAL-2.xlsx"
+# Radiomic data is expected to be csv files, this directory should contain all of them
+# original image file naming convention = radiomicfeatures_[dataset_name].csv
+# negative controal image file naming convention = radiomicfeautures_[negative_control_name]_[dataset_name].csv
+radiomic_data_dir_path: "/Users/katyscott/Documents/HNC Project/data/RADCURE/radiomic_features"
+
+dataset_name: RADCURE
+negative_control_names: ["shuffled_full","shuffled_roi","shuffled_non_roi","randomized_sampled_full","randomized_sampled_roi"] #["shuffled_full","shuffled_roi","shuffled_non_roi","randomized_full","randomized_roi","randomized_non_roi","randomized_sampled_full","randomized_sampled_roi", "randomized_sampled_non_roi"]
+
+# Event values should be in the order [Alive_value, Dead_value]
+outcome_status:
+    time_label: "Length FU"
+    event_label: "Status"
+    event_values: ["Alive", "Dead"]
+  
+need_bool_event: 1
+
+exclusion_variables: {'Ds Site': ['Sarcoma', 'Unknown', 'Paraganglioma', 'Salivary Glands', 'Other', 'benign tumor', 'Orbit', 'Lacrimal gland', 'Skin']}
+
+split_variables: {'READII-2-ROQC': ['training', 'test']}
+train_test_split: 1
+
+output_dir_path: "/Users/katyscott/Documents/HNC Project/data/RADCURE/cph_model_data"
