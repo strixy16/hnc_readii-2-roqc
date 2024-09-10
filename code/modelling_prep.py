@@ -4,10 +4,12 @@ import numpy as np
 from pandas import Series, DataFrame
 from collections.abc import Sequence, Mapping
 
+from typing import Optional, Union
+
 def subsetDataframe(dataframe:DataFrame,
                     columnName:str,
-                    includeValues:Series | DataFrame | Sequence | Mapping = None,
-                    excludeValues:Series | DataFrame | Sequence | Mapping = None):
+                    includeValues:Union[Series, DataFrame, Sequence, Mapping] = None,
+                    excludeValues:Union[Series, DataFrame, Sequence, Mapping] = None):
     """Get rows of a pandas DataFrame based on values in a specific column.
 
     Parameters
